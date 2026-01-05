@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteVerse - Share Your Knowledge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-gradient">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">📝</span>
+                <span class="logo-text">NoteVerse</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#notes">Browse Notes</a></li>
+                <li><a href="#upload">Upload</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn-signin" onclick="showAuthModal('signin')">Sign In</button>
+                <button class="btn-signup" onclick="showAuthModal('signup')">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">✨ Free • Secure • Collaborative</div>
+                <h1>Share Knowledge,<br><span class="gradient-text">Inspire Learning</span></h1>
+                <p class="hero-subtitle">Upload, discover, and share study notes with students worldwide. Build your knowledge library today.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="document.getElementById('upload').scrollIntoView({behavior: 'smooth'})">
+                        <span>Upload Notes</span>
+                        <span class="icon">↑</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('notes').scrollIntoView({behavior: 'smooth'})">
+                        <span>Browse Notes</span>
+                        <span class="icon">→</span>
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="25000">0</div>
+                        <div class="stat-label">Notes Shared</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="10000">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">Universities</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Why Choose NoteVerse</span>
+                <h2 class="section-title">Powerful Features for <span class="gradient-text">Modern Learning</span></h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Instant Upload</h3>
+                    <p>Upload your notes in seconds. Support for PDF, DOCX, images, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Search</h3>
+                    <p>Find exactly what you need with our intelligent search and filter system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Community</h3>
+                    <p>Connect with students from around the world and share knowledge.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Rating System</h3>
+                    <p>Rate and review notes to help others find quality content.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access your notes anywhere, anytime on any device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Storage</h3>
+                    <p>Your notes are safely stored with enterprise-grade encryption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Browse Notes Section -->
+    <section id="notes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Explore</span>
+                <h2 class="section-title">Trending <span class="gradient-text">Study Notes</span></h2>
+            </div>
+            
+            <!-- Search and Filter -->
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search notes by subject, topic, or keyword..." onkeyup="filterNotes()">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterCategory('all')">All</button>
+                    <button class="filter-btn" onclick="filterCategory('computer-science')">Computer Science</button>
+                    <button class="filter-btn" onclick="filterCategory('mathematics')">Mathematics</button>
+                    <button class="filter-btn" onclick="filterCategory('physics')">Physics</button>
+                    <button class="filter-btn" onclick="filterCategory('chemistry')">Chemistry</button>
+                </div>
+            </div>
+
+            <!-- Notes Grid -->
+            <div class="notes-grid" id="notesGrid">
+                <div class="note-card" data-category="computer-science">
+                    <div class="note-thumbnail">
+                        <div class="thumbnail-placeholder">💻</div>
+                    </div>
+                    <div class="note-content">
+                        <div class="note-badge">Computer Science</div>
+                        <h3>Data Structures & Algorithms</h3>
+                        <p>Complete guide to DSA with examples, time complexity analysis, and practice problems.</p>
+                        <div class="note-meta">
+                            <div class="note-author">
+                                <div class="author-avatar">MW</div>
+                                <span>Mr. Waseem</span>
+                            </div>
+                            <div class="note-stats">
+                                <span>⭐ 4.8</span>
+                                <span>👁️ 1.2K</span>
+                            </div>
+                        </div>
+                        <button class="btn-download">Download</button>
+                    </div>
+                </div>
+
+                <div class="note-card" data-category="mathematics">
+                    <div class="note-thumbnail">
+                        <div class="thumbnail-placeholder">📐</div>
+                    </div>
+                    <div class="note-content">
+                        <div class="note-badge">Mathematics</div>
+                        <h3>Calculus I - Complete Notes</h3>
+                        <p>Comprehensive calculus notes covering limits, derivatives, and integrals with solved examples.</p>
+                        <div class="note-meta">
+                            <div class="note-author">
+                                <div class="author-avatar">MA</div>
+                                <span>Moazam Ali</span>
+                            </div>
+                            <div class="note-stats">
+                                <span>⭐ 4.9</span>
+                                <span>👁️ 2.5K</span>
+                            </div>
+                        </div>
+                        <button class="btn-download">Download</button>
+                    </div>
+                </div>
+
+                <div class="note-card" data-category="physics">
+                    <div class="note-thumbnail">
+                        <div class="thumbnail-placeholder">⚛️</div>
+                    </div>
+                    <div class="note-content">
+                        <div class="note-badge">Physics</div>
+                        <h3>Quantum Mechanics Basics</h3>
+                        <p>Introduction to quantum mechanics with wave functions, operators, and Schrödinger equation.</p>
+                        <div class="note-meta">
+                            <div class="note-author">
+                                <div class="author-avatar">AR</div>
+                                <span>Ahsan Rasool</span>
+                            </div>
+                            <div class="note-stats">
+                                <span>⭐ 4.7</span>
+                                <span>👁️ 980</span>
+                            </div>
+                        </div>
+                        <button class="btn-download">Download</button>
+                    </div>
+                </div>
+
+                <div class="note-card" data-category="chemistry">
+                    <div class="note-thumbnail">
+                        <div class="thumbnail-placeholder">🧪</div>
+                    </div>
+                    <div class="note-content">
+                        <div class="note-badge">Chemistry</div>
+                        <h3>Organic Chemistry Reactions</h3>
+                        <p>Essential organic chemistry reactions with mechanisms, reagents, and conditions.</p>
+                        <div class="note-meta">
+                            <div class="note-author">
+                                <div class="author-avatar">ZA</div>
+                                <span>Zain UL Abideen</span>
+                            </div>
+                            <div class="note-stats">
+                                <span>⭐ 4.6</span>
+                                <span>👁️ 1.8K</span>
+                            </div>
+                        </div>
+                        <button class="btn-download">Download</button>
+                    </div>
+                </div>
+
+                <div class="note-card" data-category="computer-science">
+                    <div class="note-thumbnail">
+                        <div class="thumbnail-placeholder">🌐</div>
+                    </div>
+                    <div class="note-content">
+                        <div class="note-badge">Computer Science</div>
+                        <h3>Web Development Full Course</h3>
+                        <p>Complete web development notes covering HTML, CSS, JavaScript, React, and Node.js.</p>
+                        <div class="note-meta">
+                            <div class="note-author">
+                                <div class="author-avatar">SS</div>
+                                <span>Salman Shabbir</span>
+                            </div>
+                            <div class="note-stats">
+                                <span>⭐ 5.0</span>
+                                <span>👁️ 3.1K</span>
+                            </div>
+                        </div>
+                        <button class="btn-download">Download</button>
+                    </div>
+                </div>
+
+                <div class="note-card" data-category="mathematics">
+                    <div class="note-thumbnail">
+                        <div class="thumbnail-placeholder">📊</div>
+                    </div>
+                    <div class="note-content">
+                        <div class="note-badge">Mathematics</div>
+                        <h3>Linear Algebra Essentials</h3>
+                        <p>Matrices, vectors, eigenvalues, and transformations explained with visual examples.</p>
+                        <div class="note-meta">
+                            <div class="note-author">
+                                <div class="author-avatar">IK</div>
+                                <span>Imran Khan</span>
+                            </div>
+                            <div class="note-stats">
+                                <span>⭐ 4.8</span>
+                                <span>👁️ 1.5K</span>
+                            </div>
+                        </div>
+                        <button class="btn-download">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Contribute</span>
+                <h2 class="section-title">Share Your <span class="gradient-text">Knowledge</span></h2>
+            </div>
+            <div class="upload-container">
+                <form class="upload-form" onsubmit="handleUpload(event)">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📤</div>
+                        <h3>Drag & Drop your notes here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt,.jpg,.png" hidden>
+                        <button type="button" class="btn-browse" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="noteTitle">Note Title</label>
+                            <input type="text" id="noteTitle" placeholder="e.g., Calculus II Complete Guide" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="noteCategory">Category</label>
+                            <select id="noteCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="computer-science">Computer Science</option>
+                                <option value="mathematics">Mathematics</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                                <option value="biology">Biology</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="noteDescription">Description</label>
+                        <textarea id="noteDescription" rows="4" placeholder="Provide a brief description of your notes..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="noteTags">Tags (comma separated)</label>
+                        <input type="text" id="noteTags" placeholder="e.g., calculus, derivatives, integrals">
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <span>Upload Notes</span>
+                        <span class="upload-arrow">↑</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">📝</span>
+                        <span class="logo-text">NoteVerse</span>
+                    </div>
+                    <p>Empowering students through collaborative learning and knowledge sharing.</p>
+                    <div class="social-links">
+                        <a href="#">Twitter</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Platform</h4>
+                        <a href="#features">Features</a>
+                        <a href="#notes">Browse Notes</a>
+                        <a href="#upload">Upload</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <a href="#">Documentation</a>
+                        <a href="#">API</a>
+                        <a href="#">Support</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Guidelines</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NoteVerse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeAuthModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
